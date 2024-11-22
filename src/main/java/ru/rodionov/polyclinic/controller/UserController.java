@@ -2,8 +2,8 @@ package ru.rodionov.polyclinic.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import ru.rodionov.polyclinic.controller.api.UserControllerApi;
 import ru.rodionov.polyclinic.model.User;
 import ru.rodionov.polyclinic.service.impl.UserServiceImpl;
@@ -11,7 +11,7 @@ import ru.rodionov.polyclinic.service.impl.UserServiceImpl;
 import java.util.UUID;
 
 @Slf4j
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserController implements UserControllerApi {
 

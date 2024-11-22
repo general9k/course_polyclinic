@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация пользователя</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Регистрация пользователя</h2>
+    <form action="/registration" method="post">
+
+        <label for="username">Логин:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="role">Роль:</label>
+        <select id="role" name="role" required>
+            <option value="user">Пользователь</option>
+            <option value="admin">Администратор</option>
+            <option value="moderator">Модератор</option>
+        </select>
+
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="patronymic">Отчество:</label>
+        <input type="text" id="patronymic" name="patronymic">
+
+        <label for="phoneNumber">Номер телефона:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="medicalNumber">Медицинский номер:</label>
+        <input type="text" id="medicalNumber" name="medicalNumber">
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <form action="/login" method="get">
+        <button type="submit">Войти в аккаунт</button>
+    </form>
+</div>
+</body>
+</html>

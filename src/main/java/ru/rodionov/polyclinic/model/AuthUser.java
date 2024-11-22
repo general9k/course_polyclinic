@@ -23,8 +23,8 @@ public class AuthUser {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(name = "login", nullable = false)
-    private String login;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;

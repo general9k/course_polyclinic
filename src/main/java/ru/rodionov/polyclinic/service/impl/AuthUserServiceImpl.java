@@ -1,43 +1,42 @@
 package ru.rodionov.polyclinic.service.impl;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.rodionov.polyclinic.config.AuthUserDetails;
 import ru.rodionov.polyclinic.mapper.AuthUserMapper;
+import ru.rodionov.polyclinic.mapper.UserMapper;
 import ru.rodionov.polyclinic.model.AuthUser;
-import ru.rodionov.polyclinic.model.request.auth.AuthRequest;
+import ru.rodionov.polyclinic.model.User;
+import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.repository.AuthUserRepository;
+import ru.rodionov.polyclinic.repository.UserRepository;
+import ru.rodionov.polyclinic.service.AuthService;
 
-import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
-public class AuthUserServiceImpl implements UserDetailsService {
+public class AuthUserServiceImpl implements AuthService {
+
+    private final PasswordEncoder passwordEncoder;
 
     private final AuthUserRepository authUserRepository;
+    private final UserRepository userRepository;
 
     private final AuthUserMapper authUserMapper;
-
-    @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return authUserRepository.findByLogin(login)
-                .map(AuthUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException(
-                        String.format("Авторизированный пользователь с таким %s не найден", login)));
-    }
+    private final UserMapper userMapper;
 
     @Transactional
-    public void create(AuthRequest request) {
-        authUserRepository.save(authUserMapper.mapToAuth(request));
-    }
+    public void save(CreateClientRequest createClientRequest) {
+        AuthUser authUser = authUserMapper.mapToAuthUser(createClientRequest);
+        authUser.setPassword(passwordEncoder.encode(authUser.getPassword()));
 
-    public List<AuthUser> getUsers() {
-        return authUserRepository.findAll();
+        User user = userMapper.mapToUser(createClientRequest);
+
+        var saved = authUserRepository.save(authUser);
+        user.setAuthUser(saved);
+        userRepository.save(user);
     }
 }

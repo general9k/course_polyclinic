@@ -1,0 +1,27 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+  application:
+    name: polyclinic
+  datasource:
+    url: jdbc:postgresql://localhost:5433/polyclinic
+    username: postgres
+    password: postgres
+  liquibase:
+    url: jdbc:postgresql://localhost:5433/polyclinic
+    user: postgres
+    password: postgres
+    change-log: db/changelog/master.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html

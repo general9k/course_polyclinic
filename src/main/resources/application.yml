@@ -4,7 +4,7 @@ spring:
       name: admin
       password: admin
   application:
-    name: polyclinic
+    name: course_polyclinic
   datasource:
     url: jdbc:postgresql://localhost:5433/polyclinic
     username: postgres
@@ -23,5 +23,11 @@ spring:
         format_sql: true
     show-sql: false
   thymeleaf:
-    prefix: classpath:/templates
+    prefix: classpath:/templates/
     suffix: .html
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

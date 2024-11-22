@@ -42,7 +42,7 @@ public class AuthController implements AuthControllerApi {
     @Override
     public ModelAndView getAllAuthUser() {
         List<AuthUser> users = authUserServiceImpl.getUsers();
-        ModelAndView modelAndView = new ModelAndView("users");
+        ModelAndView modelAndView = new ModelAndView("all");
         modelAndView.addObject("users", users);
         return modelAndView;
     }

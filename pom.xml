@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>ru.rodionov</groupId>
-    <artifactId>polyclinic</artifactId>
+    <artifactId>course_polyclinic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>polyclinic</name>
-    <description>polyclinic</description>
+    <name>course_polyclinic</name>
+    <description>course_polyclinic</description>
     <properties>
         <java.version>22</java.version>
     </properties>

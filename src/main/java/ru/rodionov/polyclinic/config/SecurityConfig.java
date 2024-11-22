@@ -1,6 +1,7 @@
 package ru.rodionov.polyclinic.config;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 @AllArgsConstructor
+@Slf4j
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
@@ -32,12 +34,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(
-                                        "/api/v1",
-                                        "/auth/**")
-                                .permitAll()
-                                .requestMatchers(
                                         "/api/v1/**")
-                                .authenticated())
+                                .authenticated()
+                                .requestMatchers(
+                                        "/api/v1", "/error", "/auth/**")
+                                .permitAll())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }

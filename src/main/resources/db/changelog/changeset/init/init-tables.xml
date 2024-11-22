@@ -14,7 +14,7 @@
             <column defaultValueComputed="uuid_generate_v4()" name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="auth_user_pkey"/>
             </column>
-            <column name="login" type="varchar(50)">
+            <column name="username" type="varchar(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="password" type="varchar">
@@ -49,6 +49,12 @@
             </column>
             <column name="medical_number" type="varchar(10)">
                 <constraints unique="true"/>
+            </column>
+            <column name="auth_user" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_auth_user"
+                             referencedTableName="auth_user"
+                             referencedColumnNames="id"/>
             </column>
         </createTable>
     </changeSet>

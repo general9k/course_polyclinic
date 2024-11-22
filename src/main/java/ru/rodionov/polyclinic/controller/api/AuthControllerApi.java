@@ -1,37 +1,26 @@
 package ru.rodionov.polyclinic.controller.api;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.rodionov.polyclinic.model.request.auth.CreateAuthAdminRequest;
-import ru.rodionov.polyclinic.model.request.auth.CreateAuthModeratorRequest;
-import ru.rodionov.polyclinic.model.request.auth.CreateAuthUserRequest;
+import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 
-@RequestMapping("/auth")
+@Controller
 public interface AuthControllerApi {
+    @RequestMapping(
+            value = "/login",
+            method = RequestMethod.GET)
+    ModelAndView getLogin();
 
     @RequestMapping(
-            value = "/user",
+            value = "/registration",
+            method = RequestMethod.GET)
+    ModelAndView getRegistration();
+
+    @RequestMapping(
+            value = "/registration",
             method = RequestMethod.POST
     )
-    String createUser(@RequestBody CreateAuthUserRequest createAuthUserRequest);
-
-    @RequestMapping(
-            value = "/admin",
-            method = RequestMethod.POST
-    )
-    String createAdmin(@RequestBody CreateAuthAdminRequest createAuthAdminRequest);
-
-    @RequestMapping(
-            value = "/moderator",
-            method = RequestMethod.POST
-    )
-    String createModerator(@RequestBody CreateAuthModeratorRequest createAuthModeratorRequest);
-
-    @RequestMapping(
-            value = "/all",
-            method = RequestMethod.GET
-    )
-    ModelAndView getAllAuthUser();
+    String registration(CreateClientRequest createClientRequest);
 }

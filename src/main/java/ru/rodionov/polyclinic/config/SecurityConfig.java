@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.rodionov.polyclinic.util.filter.RedirectFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -35,14 +37,17 @@ public class SecurityConfig {
                                 .defaultSuccessUrl("/home", true))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/v1/**").authenticated()
                                 .requestMatchers(
+                                        "/",
+                                        "/api/v1/index",
                                         "/registration",
                                         "/login",
                                         "/error")
                                 .permitAll()
+                                .requestMatchers("/api/v1/**").authenticated()
                                 .requestMatchers("/css/**", "/images/**")
                                 .permitAll())
+                .addFilterBefore(new RedirectFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

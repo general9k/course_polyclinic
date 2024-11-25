@@ -1,12 +1,10 @@
 package ru.rodionov.polyclinic.controller.api;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 
-@Controller
 public interface AuthControllerApi {
     @RequestMapping(
             value = "/login",

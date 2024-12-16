@@ -14,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.rodionov.polyclinic.util.filter.RedirectFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -34,20 +32,15 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login").permitAll()
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home", true))
-                .authorizeHttpRequests(auth ->
-                        auth
-                                .requestMatchers(
-                                        "/",
-                                        "/api/v1/index",
-                                        "/registration",
-                                        "/login",
-                                        "/error")
-                                .permitAll()
-                                .requestMatchers("/api/v1/**").authenticated()
-                                .requestMatchers("/css/**", "/images/**")
-                                .permitAll())
-                .addFilterBefore(new RedirectFilter(), UsernamePasswordAuthenticationFilter.class)
+                                .failureUrl("/login?error=true").permitAll()
+                                .defaultSuccessUrl("/api/v1/index", true))
+
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/css/**", "/js/**", "/images/**",
+                                "/", "/api/v1/index", "/api/v1/index/**",
+                                "/registration", "/login", "/login/error", "/error").permitAll()
+                        .requestMatchers("/api/v1/**").authenticated())
                 .build();
     }
 

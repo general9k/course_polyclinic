@@ -3,13 +3,13 @@ package ru.rodionov.polyclinic.model.enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.Convert;
-import ru.rodionov.polyclinic.util.RoleConverter;
+import ru.rodionov.polyclinic.util.converter.RoleConverter;
 
 @Convert(converter = RoleConverter.class)
 public enum RoleEnum {
-    USER("user"), // Обычный пользователь
-    MODERATOR("moderator"), // Врач больницы
-    ADMIN("admin"); // Руководитель поликлиники и администратор системы
+    USER("ROLE_USER"),
+    MODERATOR("ROLE_MODERATOR"),
+    ADMIN("ROLE_ADMIN");
 
     RoleEnum(String code) {
         this.code = code;

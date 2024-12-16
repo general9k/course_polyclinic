@@ -1,24 +1,24 @@
 package ru.rodionov.polyclinic.config;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.rodionov.polyclinic.model.AuthUser;
 
 import java.util.Collection;
-import java.util.stream.Stream;
+import java.util.Collections;
 
 @AllArgsConstructor
+@Slf4j
 public class AuthUserDetails implements UserDetails {
 
     private AuthUser authUser;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Stream.of(authUser.getRole())
-                .map(SimpleGrantedAuthority::new)
-                .toList();
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + authUser.getRole()));
     }
 
     @Override

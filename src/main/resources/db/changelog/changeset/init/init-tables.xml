@@ -153,6 +153,10 @@
             <column name="medical_number" type="varchar(10)">
                 <constraints unique="true"/>
             </column>
+            <column name="position" type="varchar(100)"/>
+            <column name="description" type="varchar"/>
+            <column name="education" type="varchar"/>
+            <column name="email" type="varchar"/>
             <column name="auth_user" type="uuid">
                 <constraints nullable="false"
                              foreignKeyName="fk_user_auth_user"
@@ -183,7 +187,11 @@
             <column defaultValueComputed="uuid_generate_v4()" name="id" type="uuid">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="reception_pkey"/>
             </column>
-            <column name="date_inspection" type="timestamp">
+            <column name="date_of_appointment" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_inspection" type="timestamp"/>
+            <column name="was_carried_out" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="prescription" type="text"/>

@@ -30,11 +30,11 @@ public class AuthUserServiceImpl implements AuthService {
 
     @Transactional
     public void save(CreateClientRequest createClientRequest) {
+
         AuthUser authUser = authUserMapper.mapToAuthUser(createClientRequest);
         authUser.setPassword(passwordEncoder.encode(authUser.getPassword()));
 
         User user = userMapper.mapToUser(createClientRequest);
-
         var saved = authUserRepository.save(authUser);
         user.setAuthUser(saved);
         userRepository.save(user);

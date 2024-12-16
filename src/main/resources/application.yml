@@ -21,11 +21,15 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    show-sql: false
+    show-sql: true
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
     mode: HTML
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 logging:
   level:

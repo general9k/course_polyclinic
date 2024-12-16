@@ -35,6 +35,18 @@ public class User {
     @Column(name = "patronymic")
     private String patronymic;
 
+    @Column(name = "position")
+    private String position;  // Должность
+
+    @Column(name = "description")
+    private String description;  // Описание
+
+    @Column(name = "education")
+    private String education;  // Образование
+
+    @Column(name = "email")
+    private String email;  // Электронная почта
+
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 

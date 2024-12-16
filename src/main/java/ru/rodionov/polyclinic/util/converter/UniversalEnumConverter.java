@@ -1,4 +1,4 @@
-package ru.rodionov.polyclinic.util.interfaceEnum;
+package ru.rodionov.polyclinic.util.converter;
 
 import jakarta.persistence.AttributeConverter;
 

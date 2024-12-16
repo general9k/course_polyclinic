@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поликлиника здорового лечения</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<header>
+    <h1>Поликлиника здорового лечения</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">О нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+        <li><a href="#workers">Записаться к специалисту</a></li>
+    </ul>
+</nav>
+<section class="hero">
+    <h2>Добро пожаловать в нашу поликлинику</h2>
+    <p>Мы заботимся о вашем здоровье и предлагаем лучшие медицинские услуги.</p>
+</section>
+<section id="services">
+    <h2>Наши Услуги</h2>
+    <p>Консультации специалистов, диагностика, лечение и многое другое.</p>
+</section>
+<section id="about">
+    <h2>О нас</h2>
+    <p>Наша поликлиника предлагает высококачественное обслуживание и индивидуальный подход.</p>
+</section>
+<section id="workers">
+    <h2>Наши специалисты</h2>
+    <div th:if="${workers != null and !workers.isEmpty()}">
+        <div th:each="worker : ${workers}" class="worker">
+            <a th:href="@{/api/v1/workers/{id}(id=${worker.id})}" style="">
+            <div class="worker-info">
+                <p th:text="${worker.lastName} + ' ' + ${worker.firstName} + ' ' + ${worker.patronymic}"></p>
+                <p th:if="${worker.phoneNumber != null}" th:text="${worker.phoneNumber}"></p>
+                <p th:if="${worker.position != null}"  th:text="${worker.position}"></p>
+                <p th:if="${worker.description != null}"  th:text="${worker.description}"></p>
+                <p th:if="${worker.education != null}"  th:text="${worker.education}"></p>
+                <p th:if="${worker.email != null}"  th:text="${worker.email}"></p>
+            </div>
+            </a>
+        </div>
+    </div>
+    <div th:if="${workers == null or workers.isEmpty()}">
+        <p>Сотрудники не найдены.</p>
+    </div>
+
+</section>
+<section id="contacts">
+    <h2>Контакты</h2>
+    <p>Адрес: ул. Гагарина, 12<br>Телефон: +7 (906) 528-74-58</p>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+</footer>
+</body>
+</html>

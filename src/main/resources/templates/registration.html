@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Регистрация пользователя</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/login_registration.css">
+    <script>
+        function toggleEmployeeFields() {
+            let role = document.getElementById('role').value;
+            let employeeFields = document.getElementById('employeeFields');
+
+            // Проверка, если выбрана роль "Сотрудник"
+            if (role === 'moderator') {
+                employeeFields.classList.add('show');  // Показываем дополнительные поля
+                employeeFields.classList.remove('hidden');  // Убираем скрытие
+            } else {
+                employeeFields.classList.remove('show'); // Скрываем дополнительные поля
+                employeeFields.classList.add('hidden');  // Добавляем скрытие
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -17,10 +32,10 @@
         <input type="password" id="password" name="password" required>
 
         <label for="role">Роль:</label>
-        <select id="role" name="role" required>
-            <option value="user">Пользователь</option>
-            <option value="admin">Администратор</option>
-            <option value="moderator">Модератор</option>
+        <select id="role" name="role" required onchange="toggleEmployeeFields()">
+            <option value="user">Пациент</option>
+            <option value="moderator">Сотрудник</option>
+            <option value="admin">Руководитель / Администратор</option>
         </select>
 
         <label for="lastName">Фамилия:</label>
@@ -37,6 +52,20 @@
 
         <label for="medicalNumber">Медицинский номер:</label>
         <input type="text" id="medicalNumber" name="medicalNumber">
+
+        <div id="employeeFields" class="hidden">
+            <label for="position">Должность:</label><br/>
+            <input type="text" id="position" name="position">
+            <br/>
+            <label for="description">Описание:</label><br/>
+            <textarea id="description" name="description"></textarea>
+            <br/>
+            <label for="education">Образование:</label><br/>
+            <input type="text" id="education" name="education">
+            <br/>
+            <label for="email">Электронная почта:</label><br/>
+            <input type="email" id="email" name="email">
+        </div>
 
         <button type="submit">Зарегистрироваться</button>
     </form>

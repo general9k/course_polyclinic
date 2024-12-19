@@ -9,30 +9,58 @@
 <body>
 <header>
     <h1>Поликлиника здорового лечения</h1>
+    <p>Забота о вашем здоровье — наша главная задача.</p>
 </header>
 <nav>
     <ul>
-        <li><a href="/api/v1/index">О нас</a></li>
+        <li><a href="#about">О нас</a></li>
         <li><a href="#services">Услуги</a></li>
         <li><a href="#contacts">Контакты</a></li>
-        <li><a href="#workers">Записаться к специалисту</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
 <section class="hero">
     <h2>Добро пожаловать в нашу поликлинику</h2>
-    <p>Мы заботимся о вашем здоровье и предлагаем лучшие медицинские услуги.</p>
-</section>
-<section id="services">
-    <h2>Наши Услуги</h2>
-    <p>Консультации специалистов, диагностика, лечение и многое другое.</p>
+    <p>Профессиональная медицинская помощь в удобное для вас время.</p>
+    <a href="#services" class="cta-button">Узнать больше</a>
 </section>
 <section id="about">
     <h2>О нас</h2>
-    <p>Наша поликлиника предлагает высококачественное обслуживание и индивидуальный подход.</p>
+    <div class="content-grid">
+        <img src="/images/about-us.jpg" alt="Поликлиника">
+        <p>
+            Мы являемся современным медицинским учреждением, предлагающим широкий спектр услуг для всей семьи.
+            Индивидуальный подход, опытные специалисты и новейшее оборудование делают нас лучшими в своем деле.
+        </p>
+    </div>
+</section>
+<section id="services">
+    <h2>Наши Услуги</h2>
+    <div class="service-list">
+        <div class="service">
+            <img src="/images/consultation.jpg" alt="Консультации">
+            <h3>Консультации специалистов</h3>
+            <p>Прием терапевтов, кардиологов, педиатров и других специалистов.</p>
+        </div>
+        <div class="service">
+            <img src="/images/diagnostics.jpg" alt="Диагностика">
+            <h3>Современная диагностика</h3>
+            <p>Широкий спектр анализов и инструментальных исследований.</p>
+        </div>
+        <div class="service">
+            <img src="/images/treatment.jpg" alt="Лечение">
+            <h3>Лечение и восстановление</h3>
+            <p>Индивидуальные программы терапии и реабилитации.</p>
+        </div>
+    </div>
 </section>
 <section id="contacts">
     <h2>Контакты</h2>
-    <p>Адрес: ул. Гагарина, 12<br>Телефон: +7 (906) 528-74-58</p>
+    <p>Адрес: ул. Гагарина, 12</p>
+    <p>Телефон: +7 (906) 528-74-58</p>
+    <p>Email: info@polyclinic.ru</p>
+    <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </section>
 <footer>
     <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>

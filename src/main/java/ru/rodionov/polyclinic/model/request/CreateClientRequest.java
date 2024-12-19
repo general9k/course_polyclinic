@@ -26,7 +26,7 @@ public class CreateClientRequest {
     public CreateClientRequest(String username, String password, String role, String lastName, String firstName, String phoneNumber) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = role != null ? role : "USER";
         this.lastName = lastName;
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;

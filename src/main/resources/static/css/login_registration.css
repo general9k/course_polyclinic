@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: linear-gradient(to right, #ece9e6, #ffffff);
+    background: url('../images/v870-tang-36.jpg') no-repeat center center/cover;
 }
 
 header {

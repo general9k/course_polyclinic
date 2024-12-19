@@ -8,7 +8,7 @@
         function toggleEmployeeFields() {
             const role = document.getElementById('role').value;
             const employeeFields = document.getElementById('employeeFields');
-            employeeFields.classList.toggle('hidden', role !== 'moderator');
+            employeeFields.classList.toggle('hidden', role !== 'MODERATOR');
         }
     </script>
 </head>
@@ -20,6 +20,7 @@
             <li><a href="#services">Услуги</a></li>
             <li><a href="#contacts">Контакты</a></li>
             <li><a href="#workers">Записаться к специалисту</a></li>
+            <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
         </ul>
     </nav>
 </header>
@@ -33,11 +34,10 @@
             <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
 
-            <label for="role">Роль:</label>
-            <select id="role" name="role" onchange="toggleEmployeeFields()" required>
-                <option value="user">Пациент</option>
-                <option value="moderator">Сотрудник</option>
-                <option value="admin">Руководитель</option>
+            <label th:if="${isAdmin}" for="role">Роль:</label>
+            <select th:if="${isAdmin}" id="role" name="role" onchange="toggleEmployeeFields()">
+                <option value="ADMIN">Руководитель/Администратор</option>
+                <option value="MODERATOR">Сотрудник</option>
             </select>
 
             <label for="lastName">Фамилия:</label>
@@ -70,6 +70,9 @@
             </div>
 
             <button type="submit">Зарегистрироваться</button>
+        </form>
+        <form action="/login" method="get">
+            <button type="submit">Войти</button>
         </form>
     </div>
 </main>

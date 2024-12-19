@@ -20,7 +20,7 @@
             <column name="password" type="varchar">
                 <constraints nullable="false"/>
             </column>
-            <column name="role" type="varchar">
+            <column name="role" type="varchar" defaultValue="user">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -147,10 +147,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="patronymic" type="varchar(50)"/>
-            <column name="phone_number" type="varchar(11)">
+            <column name="phone_number" type="varchar(50)">
                 <constraints unique="true"/>
             </column>
-            <column name="medical_number" type="varchar(10)">
+            <column name="medical_number" type="varchar(50)">
                 <constraints unique="true"/>
             </column>
             <column name="position" type="varchar(100)"/>

@@ -19,6 +19,11 @@ public class AuthController implements AuthControllerApi {
     private final UserFacade facade;
 
     @Override
+    public String redirectOnLogin() {
+        return "redirect:/login";
+    }
+
+    @Override
     public String getLogin(Boolean error) {
         if (Boolean.TRUE.equals(error)) {
             return "login/error";

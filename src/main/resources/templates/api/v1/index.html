@@ -30,27 +30,6 @@
     <h2>О нас</h2>
     <p>Наша поликлиника предлагает высококачественное обслуживание и индивидуальный подход.</p>
 </section>
-<section id="workers">
-    <h2>Наши специалисты</h2>
-    <div th:if="${workers != null and !workers.isEmpty()}">
-        <div th:each="worker : ${workers}" class="worker">
-            <a th:href="@{/api/v1/workers/{id}(id=${worker.id})}" style="">
-            <div class="worker-info">
-                <p th:text="${worker.lastName} + ' ' + ${worker.firstName} + ' ' + ${worker.patronymic}"></p>
-                <p th:if="${worker.phoneNumber != null}" th:text="${worker.phoneNumber}"></p>
-                <p th:if="${worker.position != null}"  th:text="${worker.position}"></p>
-                <p th:if="${worker.description != null}"  th:text="${worker.description}"></p>
-                <p th:if="${worker.education != null}"  th:text="${worker.education}"></p>
-                <p th:if="${worker.email != null}"  th:text="${worker.email}"></p>
-            </div>
-            </a>
-        </div>
-    </div>
-    <div th:if="${workers == null or workers.isEmpty()}">
-        <p>Сотрудники не найдены.</p>
-    </div>
-
-</section>
 <section id="contacts">
     <h2>Контакты</h2>
     <p>Адрес: ул. Гагарина, 12<br>Телефон: +7 (906) 528-74-58</p>

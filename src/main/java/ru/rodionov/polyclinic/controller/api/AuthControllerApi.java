@@ -10,6 +10,12 @@ import java.io.IOException;
 
 public interface AuthControllerApi {
     @RequestMapping(
+            value = "/",
+            method = RequestMethod.GET
+    )
+    String redirectOnLogin();
+
+    @RequestMapping(
             value = "/login",
             method = RequestMethod.GET)
     String getLogin(@RequestParam(required = false) Boolean error);

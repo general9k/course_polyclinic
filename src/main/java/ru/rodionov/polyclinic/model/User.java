@@ -36,16 +36,16 @@ public class User {
     private String patronymic;
 
     @Column(name = "position")
-    private String position;  // Должность
+    private String position;
 
     @Column(name = "description")
-    private String description;  // Описание
+    private String description;
 
     @Column(name = "education")
-    private String education;  // Образование
+    private String education;
 
     @Column(name = "email")
-    private String email;  // Электронная почта
+    private String email;
 
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;

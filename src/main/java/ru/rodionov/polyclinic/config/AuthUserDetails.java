@@ -9,6 +9,7 @@ import ru.rodionov.polyclinic.model.AuthUser;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Slf4j
@@ -49,5 +50,9 @@ public class AuthUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UUID getId() {
+        return authUser.getId();
     }
 }

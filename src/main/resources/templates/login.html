@@ -6,20 +6,39 @@
     <link rel="stylesheet" href="/css/login_registration.css">
 </head>
 <body>
-<div class="container">
-    <h2>Вход в систему</h2>
-    <form action="/login" method="post">
-        <label for="username">Логин:</label>
-        <input type="text" id="username" name="username" required>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/api/v1/index">О нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="#workers">Записаться к специалисту</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <h2>Вход в систему</h2>
+        <form action="/login" method="post">
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required>
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
 
-        <button type="submit">Войти</button>
-    </form>
-    <form action="/registration" method="get">
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-</div>
+            <button type="submit">Войти</button>
+        </form>
+        <form action="/registration" method="get">
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
 </body>
 </html>

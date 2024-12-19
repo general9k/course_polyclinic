@@ -1,55 +1,94 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+header {
+    background-color: #34495E;
+    padding: 1rem 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+}
+
+header nav ul li a:hover {
+    background-color: #1ABC9C;
+    border-radius: 4px;
+}
+
+main {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    padding: 2rem;
 }
 
 .container {
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-h2 {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
     text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
 }
 
-label {
-    margin-top: 10px;
+.container label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="tel"],
-select {
+.container input,
+.container select,
+.container textarea {
+    width: 100%;
     padding: 10px;
-    margin-top: 5px;
+    margin-bottom: 15px; /* Добавляет отступы между полями */
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
     margin-top: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 12px;
+    width: 100%;
+    background: #4caf50;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 8px;
     font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -60,11 +99,18 @@ button:hover {
     display: none;
 }
 
-#employeeFields {
-    transition: all 0.3s ease-in-out;
+footer {
+    background-color: #2C3E50;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 14px;
 }
 
-#employeeFields.show {
-    display: block;
-    opacity: 1;
+footer p {
+    margin: 5px 0;
+}
+
+footer .contacts {
+    margin-top: 10px;
 }

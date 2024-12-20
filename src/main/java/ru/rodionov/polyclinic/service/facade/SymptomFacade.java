@@ -8,6 +8,7 @@ import ru.rodionov.polyclinic.model.Symptom;
 import ru.rodionov.polyclinic.service.SymptomService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -22,5 +23,9 @@ public class SymptomFacade {
 
     public void save(String name) {
         symptomService.save(name);
+    }
+
+    public void delete(UUID id) {
+        symptomService.delete(id);
     }
 }

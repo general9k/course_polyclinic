@@ -29,6 +29,9 @@
         <div class="symptom-grid">
             <div class="symptom-card" th:each="symptom : ${symptoms}">
                 <h3 th:text="${symptom.name}">Название симптома</h3>
+                <form th:action="@{/api/v1/symptoms/{id}/delete(id=${symptom.id})}" method="POST">
+                    <button type="submit" class="delete-btn">Удалить</button>
+                </form>
             </div>
         </div>
         <button th:if="${isAdmin || isModerator}" class="create-symptom-btn"

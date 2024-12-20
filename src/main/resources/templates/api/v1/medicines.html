@@ -26,10 +26,6 @@
 <section id="medicines">
     <h2>Лекарства, доступные в нашей поликлинике</h2>
 
-    <div th:if="${isAdmin || isModerator}" class="add-medicine-btn">
-        <a href="/api/v1/medicines/create" class="button">Добавить лекарство</a>
-    </div>
-
     <div class="filters">
         <form action="/api/v1/medicines" method="get">
             <label for="name">Поиск по названию лекарства:</label>
@@ -60,6 +56,11 @@
         </div>
     </div>
 </section>
+
+<div th:if="${isAdmin || isModerator}" class="add-medicine-btn">
+    <a href="/api/v1/medicines/create" class="button">Добавить лекарство</a>
+</div>
+
 <footer>
     <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
     <div class="contacts">

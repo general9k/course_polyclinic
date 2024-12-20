@@ -8,6 +8,8 @@ import ru.rodionov.polyclinic.controller.api.DiagnoseControllerApi;
 import ru.rodionov.polyclinic.service.facade.DiagnoseFacade;
 import ru.rodionov.polyclinic.service.facade.UserFacade;
 
+import java.util.UUID;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -42,6 +44,12 @@ public class DiagnoseController implements DiagnoseControllerApi {
     @Override
     public String saveDiagnose(String name) {
         diagnoseFacade.saveDiagnose(name);
+        return "redirect:/api/v1/diagnosis";
+    }
+
+    @Override
+    public String deleteDiagnose(UUID id) {
+        diagnoseFacade.deleteDiagnose(id);
         return "redirect:/api/v1/diagnosis";
     }
 }

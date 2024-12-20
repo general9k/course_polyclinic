@@ -8,6 +8,8 @@ import ru.rodionov.polyclinic.controller.api.SymptomControllerApi;
 import ru.rodionov.polyclinic.service.facade.SymptomFacade;
 import ru.rodionov.polyclinic.service.facade.UserFacade;
 
+import java.util.UUID;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -40,6 +42,12 @@ public class SymptomController implements SymptomControllerApi {
     @Override
     public String saveSymptom(String name) {
         symptomFacade.save(name);
+        return "redirect:/api/v1/symptoms";
+    }
+
+    @Override
+    public String deleteSymptom(UUID id) {
+        symptomFacade.delete(id);
         return "redirect:/api/v1/symptoms";
     }
 }

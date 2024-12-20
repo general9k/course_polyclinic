@@ -29,6 +29,9 @@
         <div class="diagnosis-grid">
             <div class="diagnosis-card" th:each="diagnosis : ${diagnoses}">
                 <h3 th:text="${diagnosis.name}">Название диагноза</h3>
+                <form th:action="@{/api/v1/diagnosis/{id}/delete(id=${diagnosis.id})}" method="POST">
+                    <button type="submit" class="delete-btn">Удалить</button>
+                </form>
             </div>
         </div>
         <button th:if="${isAdmin || isModerator}" class="create-diagnosis-btn"

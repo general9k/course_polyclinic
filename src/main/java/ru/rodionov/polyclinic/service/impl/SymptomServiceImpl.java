@@ -9,6 +9,7 @@ import ru.rodionov.polyclinic.repository.SymptomRepository;
 import ru.rodionov.polyclinic.service.SymptomService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -29,5 +30,11 @@ public class SymptomServiceImpl implements SymptomService {
         symptomRepository.save(Symptom.builder()
                 .name(name)
                 .build());
+    }
+
+    @Override
+    @Transactional
+    public void delete(UUID id) {
+        symptomRepository.deleteById(id);
     }
 }

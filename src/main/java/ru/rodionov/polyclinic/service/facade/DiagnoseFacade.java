@@ -8,6 +8,7 @@ import ru.rodionov.polyclinic.model.Diagnose;
 import ru.rodionov.polyclinic.service.DiagnoseService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -22,5 +23,9 @@ public class DiagnoseFacade {
 
     public void saveDiagnose(String name) {
         diagnoseService.save(name);
+    }
+
+    public void deleteDiagnose(UUID id) {
+        diagnoseService.delete(id);
     }
 }

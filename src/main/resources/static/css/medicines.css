@@ -201,7 +201,7 @@ footer .contacts {
 /* Стиль для кнопки "Добавить лекарство" */
 .add-medicine-btn {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin: 2rem 0;  /* Отступ сверху и снизу для разделения с другими элементами */
 }
 
 .add-medicine-btn .button {
@@ -218,3 +218,4 @@ footer .contacts {
 .add-medicine-btn .button:hover {
     background-color: #16A085;
 }
+

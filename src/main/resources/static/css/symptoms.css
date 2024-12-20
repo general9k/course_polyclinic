@@ -143,3 +143,20 @@ footer .contacts {
     margin-top: 10px;
 }
 
+/* Кнопка удаления */
+.delete-btn {
+    background-color: #f0f0f0;  /* Мягкий серый фон */
+    color: #333;                 /* Тёмно-серый цвет текста */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;      /* Светлая рамка */
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* При наведении на кнопку */
+.delete-btn:hover {
+    background-color: #e6e6e6;  /* Немного более тёмный фон при наведении */
+    color: #555;                 /* Светлый текст при наведении */
+}

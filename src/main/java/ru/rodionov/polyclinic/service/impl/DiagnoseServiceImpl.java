@@ -9,6 +9,7 @@ import ru.rodionov.polyclinic.repository.DiagnoseRepository;
 import ru.rodionov.polyclinic.service.DiagnoseService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -29,5 +30,11 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         repository.save(Diagnose.builder()
                 .name(name)
                 .build());
+    }
+
+    @Override
+    @Transactional
+    public void delete(UUID id) {
+        repository.deleteById(id);
     }
 }

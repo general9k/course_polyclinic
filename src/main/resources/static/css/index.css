@@ -43,7 +43,7 @@ section {
 }
 .hero {
     background: url('../images/v870-tang-36.jpg') no-repeat center center/cover;
-    color: #fff;
+    color: black;
     padding: 4rem 2rem;
     background-color: #1ABC9C;
 }
@@ -139,6 +139,14 @@ footer {
     font-size: 2rem;
 }
 
+.service p {
+    font-size: 1.5rem;
+}
+
+#about h2{
+    font-size: 2.5rem;
+}
+
 .content-grid img {
     width: 400px; /* Фиксированная ширина */
     height: 400px; /* Фиксированная высота */
@@ -146,4 +154,12 @@ footer {
     border-radius: 50%; /* Круглая форма */
     margin-bottom: 1rem; /* Отступ снизу для гармонии */
     border: 3px solid #1ABC9C; /* Рамка для красоты */
+}
+
+.content-grid p {
+    font-size: 1.5rem;
+}
+
+#services h2 {
+    font-size: 2.5rem;
 }

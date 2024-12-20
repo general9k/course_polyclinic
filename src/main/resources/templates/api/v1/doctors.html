@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши Врачи</title>
+    <link rel="stylesheet" href="/css/doctors.css">
+</head>
+<body>
+<header>
+    <h1>Наши Врачи</h1>
+    <p>Опытные специалисты, готовые заботиться о вашем здоровье.</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<section id="doctors">
+    <h2>Врачи нашей поликлиники</h2>
+    <div class="workers-list">
+        <div class="worker" th:each="doctor : ${doctors}">
+            <a th:href="@{doctors/{id}(id=${doctor.id})}" class="worker-link">
+                <p th:text="|${doctor.lastName} ${doctor.firstName} ${doctor.patronymic}|">ФИО</p>
+                <p th:text="|Специализация: ${doctor.position}|">Специализация</p>
+                <p th:text="|Подробнее: ${doctor.description}|">Подробная информация</p>
+                <p th:text="|Телефон: ${doctor.phoneNumber}|">Телефон</p>
+                <p th:text="|Медицинский номер: ${doctor.medicalNumber}|">Медицинский номер</p>
+            </a>
+        </div>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+</footer>
+</body>
+</html>

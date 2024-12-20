@@ -62,7 +62,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/css/**", "/js/**", "/images/**",
                                 "/", "/api/v1/index", "/api/v1/index/**",
-                                "/registration", "/login", "/login/error", "/error").permitAll()
+                                "/registration", "/login", "/login/error", "/error", "/api/v1/doctors").permitAll()
                         .requestMatchers("/api/v1/**").authenticated())
                 .build();
     }

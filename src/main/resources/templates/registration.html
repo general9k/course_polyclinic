@@ -16,10 +16,10 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/api/v1/index">О нас</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#contacts">Контакты</a></li>
-            <li><a href="#workers">Записаться к специалисту</a></li>
+            <li><a href="/api/v1/index">Главная страница</a></li>
+            <li><a href="/api/v1/doctors">Врачи</a></li>
+            <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+            <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
             <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
         </ul>
     </nav>
@@ -27,7 +27,7 @@
 <main>
     <div class="container">
         <h2>Регистрация пользователя</h2>
-        <form action="/registration" method="post">
+        <form action="/registration" method="post" enctype="multipart/form-data">
             <label for="username">Логин:</label>
             <input type="text" id="username" name="username" required>
 
@@ -67,6 +67,9 @@
 
                 <label for="email">Электронная почта:</label>
                 <input type="email" id="email" name="email">
+
+                <label for="photo">Фото сотрудника:</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
             </div>
 
             <button type="submit">Зарегистрироваться</button>

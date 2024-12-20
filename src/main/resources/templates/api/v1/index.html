@@ -13,9 +13,9 @@
 </header>
 <nav>
     <ul>
-        <li><a href="#about">О нас</a></li>
-        <li><a href="#services">Услуги</a></li>
-        <li><a href="#contacts">Контакты</a></li>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
@@ -23,7 +23,6 @@
 <section class="hero">
     <h2>Добро пожаловать в нашу поликлинику</h2>
     <p>Профессиональная медицинская помощь в удобное для вас время.</p>
-    <a href="#services" class="cta-button">Узнать больше</a>
 </section>
 <section id="about">
     <h2>О нас</h2>
@@ -60,7 +59,14 @@
     <p>Адрес: ул. Гагарина, 12</p>
     <p>Телефон: +7 (906) 528-74-58</p>
     <p>Email: info@polyclinic.ru</p>
-    <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.123456789!2d30.3134973!3d59.9368479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696315a6b22b2a3%3A0x2c123456789abcd!2sул.%20Гагарина%2C%2012!5e0!3m2!1sru!2sru!4v1234567890"
+            width="100%"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+    </iframe>
 </section>
 <footer>
     <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>

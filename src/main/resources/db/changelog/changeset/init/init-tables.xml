@@ -157,6 +157,7 @@
             <column name="description" type="varchar"/>
             <column name="education" type="varchar"/>
             <column name="email" type="varchar"/>
+            <column name="photo_url" type="varchar"/>
             <column name="auth_user" type="uuid">
                 <constraints nullable="false"
                              foreignKeyName="fk_user_auth_user"

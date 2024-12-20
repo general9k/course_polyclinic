@@ -47,6 +47,9 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 

@@ -7,7 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import ru.rodionov.polyclinic.config.AuthUserDetails;
+import ru.rodionov.polyclinic.model.User;
 import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.service.AuthService;
 
@@ -22,8 +24,13 @@ public class UserFacade {
     private final AuthService authService;
 
     @Transactional
-    public void saveUser(CreateClientRequest createClientRequest) throws IOException {
-        authService.save(createClientRequest);
+    public void saveUser(CreateClientRequest createClientRequest, MultipartFile photo) throws IOException {
+        authService.save(createClientRequest, photo);
+    }
+
+    @Transactional
+    public void save(User user) {
+        authService.save(user);
     }
 
     public UUID getCurrentUserId() {

@@ -15,8 +15,9 @@
     <ul>
         <li><a href="/api/v1/index">Главная страница</a></li>
         <li><a href="/api/v1/doctors">Врачи</a></li>
-        <li><a href="/api/v1/symptoms">Симптомы</a></li>
-        <li><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li><a href="/api/v1/medicines">Лекарства</a></li>
         <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -26,7 +27,6 @@
     <h2>Врачи нашей поликлиники</h2>
     <div class="filters">
         <form action="/api/v1/doctors" method="get">
-            <!-- Фильтр по специализации -->
             <label for="specialization">Фильтр по специализации:</label>
             <select id="specialization" name="specialization">
                 <option value="">Все специализации</option>
@@ -37,7 +37,6 @@
                 </th:block>
             </select>
 
-            <!-- Поиск по фамилии -->
             <label for="lastName">Поиск по фамилии:</label>
             <input type="text" id="lastName" name="lastName"
                    placeholder="Введите фамилию"
@@ -60,6 +59,10 @@
 </section>
 <footer>
     <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
 </footer>
 </body>
 </html>

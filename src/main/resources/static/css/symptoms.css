@@ -119,7 +119,6 @@ nav ul li a:hover {
     background-color: #16A085;
 }
 
-/* Футер */
 footer {
     background-color: #2C3E50;
     color: #fff;
@@ -135,3 +134,4 @@ footer p {
 footer .contacts {
     margin-top: 10px;
 }
+

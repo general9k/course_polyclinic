@@ -23,6 +23,8 @@ public class DoctorController implements DoctorControllerApi {
     public String getDoctors(Model model, String specialization, String lastName) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         model.addAttribute("doctors", doctorFacade.getDoctors(specialization, lastName));
         model.addAttribute("positions", doctorFacade.getPositions());
         model.addAttribute("currentSpecialization", specialization);
@@ -34,6 +36,8 @@ public class DoctorController implements DoctorControllerApi {
     public String getDoctor(Model model, UUID id) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         model.addAttribute("doctor", doctorFacade.getDoctor(id));
         return "/api/v1/doctors/employee";
     }

@@ -21,6 +21,8 @@ public class DiagnoseController implements DiagnoseControllerApi {
     public String getDiagnoses(Model model) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         model.addAttribute("diagnoses", diagnoseFacade.getDiagnoses());
 
         return "/api/v1/diagnosis";
@@ -29,6 +31,9 @@ public class DiagnoseController implements DiagnoseControllerApi {
     @Override
     public String saveDiagnose(Model model) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
+        model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         model.addAttribute("isAdmin", userFacade.isAdmin());
 
         return "/api/v1/diagnosis/create";

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновить Лекарство</title>
+    <link rel="stylesheet" href="/css/medicineUpdate.css">
+</head>
+<body>
+<header>
+    <h1>Обновить лекарство</h1>
+    <p>Заполните форму для обновления информации о лекарстве в базе данных.</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<section id="update-medicine">
+    <h2>Форма обновления лекарства</h2>
+    <form th:action="@{/api/v1/medicines/{id}/edit(id=${medicine.id})}" method="post">
+        <div class="form-group">
+            <label for="name">Название лекарства:</label>
+            <input type="text" id="name" name="name" th:value="${medicine.name}"
+                   placeholder="Введите название лекарства" required>
+        </div>
+
+        <div class="form-group">
+            <label for="method">Метод применения:</label>
+            <input type="text" id="method" name="method" th:value="${medicine.method}"
+                   placeholder="Введите метод применения">
+        </div>
+
+        <div class="form-group">
+            <label for="measuring">Мера дозировки:</label>
+            <input type="text" id="measuring" name="measuring" th:value="${medicine.measuring}"
+                   placeholder="Введите дозировку">
+        </div>
+
+        <div class="form-group">
+            <label for="sideEffects">Побочные эффекты:</label>
+            <textarea id="sideEffects" name="sideEffects" placeholder="Введите побочные эффекты"
+                      th:text="${medicine.sideEffects}"></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="create-medicine-btn">Обновить лекарство</button>
+            <a href="/api/v1/medicines" class="cancel-btn">Отмена</a>
+        </div>
+    </form>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
+</body>
+</html>

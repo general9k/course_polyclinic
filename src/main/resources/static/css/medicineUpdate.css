@@ -1,0 +1,158 @@
+/* Общие стили для страницы */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Заголовок */
+header {
+    background-color: #2C3E50;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1rem;
+    margin: 0.5rem 0 0;
+}
+
+/* Навигация */
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    background-color: #34495E;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #1ABC9C;
+    border-radius: 4px;
+}
+
+/* Обновление лекарства */
+#update-medicine {
+    background-color: #ffffff;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#update-medicine .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#update-medicine h2 {
+    font-size: 2rem;
+    color: #2C3E50;
+    margin-bottom: 1.5rem;
+}
+
+/* Стили для формы */
+#update-medicine label {
+    font-size: 1rem;
+    color: #555;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+#update-medicine input[type="text"],
+#update-medicine textarea {
+    font-size: 1rem;
+    padding: 0.8rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#update-medicine textarea {
+    height: 150px; /* Увеличиваем высоту для поля побочных эффектов */
+    resize: vertical; /* Разрешаем изменение размера по вертикали */
+}
+
+/* Кнопка "Обновить лекарство" */
+#update-medicine .create-medicine-btn {
+    background-color: #1ABC9C;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#update-medicine .create-medicine-btn:hover {
+    background-color: #16A085;
+    transform: translateY(-2px); /* Легкое поднятие при наведении */
+}
+
+#update-medicine .create-medicine-btn:active {
+    transform: translateY(1px); /* Эффект нажатия */
+}
+
+/* Кнопка "Отмена" */
+#update-medicine .cancel-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    margin-left: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#update-medicine .cancel-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px); /* Легкое поднятие при наведении */
+}
+
+#update-medicine .cancel-btn:active {
+    transform: translateY(1px); /* Эффект нажатия */
+}
+
+/* Подвал */
+footer {
+    background-color: #2C3E50;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer .contacts {
+    margin-top: 10px;
+}

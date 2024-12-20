@@ -21,6 +21,8 @@ public class SymptomController implements SymptomControllerApi {
     public String getSymptoms(Model model) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         model.addAttribute("symptoms", symptomFacade.getSymptoms());
         return "/api/v1/symptoms";
     }
@@ -30,6 +32,7 @@ public class SymptomController implements SymptomControllerApi {
 
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
 
         return "/api/v1/symptoms/create";
     }

@@ -29,6 +29,8 @@ public class AuthController implements AuthControllerApi {
     public String getLogin(Model model, Boolean error) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         if (Boolean.TRUE.equals(error)) {
             return "login/error";
         }
@@ -39,6 +41,8 @@ public class AuthController implements AuthControllerApi {
     public String getRegistration(Model model) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         return "registration";
     }
 
@@ -53,6 +57,8 @@ public class AuthController implements AuthControllerApi {
     public String startPage(Model model) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isModerator", userFacade.isModerator());
+
         return "api/v1/index";
     }
 }

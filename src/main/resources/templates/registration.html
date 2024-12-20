@@ -18,6 +18,8 @@
         <ul>
             <li><a href="/api/v1/index">Главная страница</a></li>
             <li><a href="/api/v1/doctors">Врачи</a></li>
+            <li><a href="/api/v1/symptoms">Симптомы</a></li>
+            <li><a href="/api/v1/diagnosis">Диагнозы</a></li>
             <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
             <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
             <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -68,8 +70,9 @@
                 <label for="email">Электронная почта:</label>
                 <input type="email" id="email" name="email">
 
-                <label for="photo">Фото сотрудника:</label>
-                <input type="file" id="photo" name="photo" accept="image/*">
+                <label for="photo" class="custom-file-label">Выберите фото сотрудника:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" class="custom-file-input">
+                <span id="fileName" class="file-name">Файл не выбран</span>
             </div>
 
             <button type="submit">Зарегистрироваться</button>
@@ -87,4 +90,13 @@
     </div>
 </footer>
 </body>
+<script>
+    const fileInput = document.getElementById('photo');
+    const fileNameLabel = document.getElementById('fileName');  // Получаем элемент для отображения имени файла
+
+    fileInput.addEventListener('change', () => {
+        const fileName = fileInput.files[0]?.name || 'Файл не выбран';
+        fileNameLabel.textContent = `Выбран файл: ${fileName}`;  // Обновляем текст
+    });
+</script>
 </html>

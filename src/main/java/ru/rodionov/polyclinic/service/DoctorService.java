@@ -7,8 +7,9 @@ import java.util.UUID;
 
 public interface DoctorService {
 
-    List<User> getDoctors();
+    List<User> getDoctors(String specialization, String lastName);
 
     User getDoctor(UUID id);
 
+    List<String> getPositions();
 }

@@ -21,13 +21,36 @@ public class DoctorServiceImpl implements DoctorService {
     private final UserRepository repository;
 
     @Override
-    public List<User> getDoctors() {
-        return repository.findUserByAuthUser_Role(RoleEnum.MODERATOR.getCode().substring(5));
+    public List<User> getDoctors(String specialization, String lastName) {
+
+        List<User> doctors = repository.findUserByAuthUser_Role(RoleEnum.MODERATOR.getCode().substring(5));
+        if (specialization != null && !specialization.isEmpty()) {
+            doctors = doctors.stream()
+                    .filter(doctor -> doctor.getPosition().equalsIgnoreCase(specialization))
+                    .toList();
+        }
+
+        if (lastName != null && !lastName.isEmpty()) {
+            doctors = doctors.stream()
+                    .filter(doctor -> doctor.getLastName().toLowerCase().contains(lastName.toLowerCase()))
+                    .toList();
+        }
+
+        return doctors;
     }
 
     @Override
     public User getDoctor(UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new ServerLogicException("Доктор с id = %s не найден".formatted(id), ServerLogicExceptionType.NOT_FOUND));
+    }
+
+    @Override
+    public List<String> getPositions() {
+        return repository.findAll().stream()
+                .map(User::getPosition)
+                .filter(o -> o != null && !o.isEmpty())
+                .distinct()
+                .toList();
     }
 }

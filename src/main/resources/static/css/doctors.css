@@ -111,6 +111,57 @@ nav ul li a:hover {
     color: #7f8c8d; /* Цвет медицинского номера */
 }
 
+/* Фильтры */
+.filters {
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.filters label {
+    font-size: 1rem;
+    color: #333;
+    margin-right: 10px;
+}
+
+.filters select,
+.filters input[type="text"] {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1 1 calc(45% - 20px); /* Гибкая ширина */
+    box-sizing: border-box;
+}
+
+.filters button {
+    background-color: #1ABC9C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #16A085;
+}
+
+
 /* Нижний колонтитул */
 footer {
     background-color: #2C3E50;

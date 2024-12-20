@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание симптома</title>
+    <link rel="stylesheet" href="/css/symptomCreate.css">
+</head>
+<body>
+<header>
+    <h1>Создание симптома</h1>
+    <p>Заполните форму для добавления нового симптома в систему.</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<section id="create-symptom">
+    <div class="form-container">
+        <h2>Добавьте новый симптом</h2>
+        <form action="/api/v1/symptoms/create" method="post">
+            <label for="name">Название симптома:</label>
+            <input type="text" id="name" name="name" required>
+
+            <button type="submit" class="create-symptom-btn">Создать симптом</button>
+        </form>
+        <button class="create-symptom-btn" onclick="location.href='/api/v1/symptoms'">Назад к списку симптомов</button>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -20,10 +20,13 @@ public class DoctorController implements DoctorControllerApi {
     private final UserFacade userFacade;
 
     @Override
-    public String getDoctors(Model model) {
+    public String getDoctors(Model model, String specialization, String lastName) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
-        model.addAttribute("doctors", doctorFacade.getDoctors());
+        model.addAttribute("doctors", doctorFacade.getDoctors(specialization, lastName));
+        model.addAttribute("positions", doctorFacade.getPositions());
+        model.addAttribute("currentSpecialization", specialization);
+        model.addAttribute("currentLastName", lastName);
         return "/api/v1/doctors";
     }
 

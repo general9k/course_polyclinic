@@ -7,25 +7,24 @@ import ru.rodionov.polyclinic.model.User;
 import ru.rodionov.polyclinic.service.DoctorService;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class DoctorFacade {
 
-    private static final String URL = "/images/doctor";
-
     private final DoctorService doctorService;
 
-    public List<User> getDoctors() {
-        return doctorService.getDoctors();
+    public List<User> getDoctors(String specialization, String lastName) {
+        return doctorService.getDoctors(specialization, lastName);
     }
 
     public User getDoctor(UUID id) {
         return doctorService.getDoctor(id);
     }
 
+    public List<String> getPositions() {
+        return doctorService.getPositions();
+    }
 }

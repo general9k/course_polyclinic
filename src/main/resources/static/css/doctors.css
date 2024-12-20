@@ -1,11 +1,19 @@
 /* Общие стили для страницы */
-body {
-    font-family: 'Arial', sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Контейнер для основного содержимого */
+.content-wrapper {
+    flex: 1; /* Растягивается, чтобы занять доступное пространство */
 }
 
 /* Заголовок */
@@ -103,12 +111,27 @@ nav ul li a:hover {
 
 .worker p:nth-child(3) {
     font-size: 0.95rem;
-    color: #34495E; /* Цвет телефона */
+    color: #34495E; /* Цвет описания */
 }
 
 .worker p:nth-child(4) {
     font-size: 0.9rem;
-    color: #7f8c8d; /* Цвет медицинского номера */
+    color: #7f8c8d; /* Цвет телефона */
+}
+
+.worker p:nth-child(5) {
+    font-size: 0.9rem;
+    color: #95a5a6; /* Цвет медицинского номера */
+}
+
+/* Ссылки на карточках */
+.worker-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.worker-link:hover {
+    text-decoration: underline;
 }
 
 /* Фильтры */
@@ -161,13 +184,14 @@ nav ul li a:hover {
     background-color: #16A085;
 }
 
-
+/* Футер */
 footer {
     background-color: #2C3E50;
     color: #fff;
     text-align: center;
     padding: 1rem;
     font-size: 14px;
+    margin-top: auto; /* Футер будет автоматически находиться внизу */
 }
 
 footer p {
@@ -176,14 +200,4 @@ footer p {
 
 footer .contacts {
     margin-top: 10px;
-}
-
-
-.worker-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.worker-link:hover {
-    text-decoration: underline;
 }

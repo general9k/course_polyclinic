@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-11-21-insert_diagnose" author="RodionovM">
+        <insert tableName="diagnosis">
+            <column name="name">Острая респираторная инфекция</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Хронический бронхит</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Гипертоническая болезнь</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Сахарный диабет 2 типа</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Инсульт</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Астма</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Пневмония</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Ожог первой степени</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Артрит</column>
+        </insert>
+        <insert tableName="diagnosis">
+            <column name="name">Мигрень</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2024-11-21-insert_symptoms" author="RodionovM">
+        <insert tableName="symptom">
+            <column name="name">Кашель</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Лихорадка</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Одышка</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Головная боль</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Тошнота</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Рвота</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Боль в животе</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Озноб</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Боль в груди</column>
+        </insert>
+        <insert tableName="symptom">
+            <column name="name">Слабость</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2024-12-21-insert_medicines" author="RodionovM">
+        <insert tableName="medicine">
+            <column name="name">Парацетамол</column>
+            <column name="measuring">500 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Тошнота, головная боль</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Ибупрофен</column>
+            <column name="measuring">200 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Боль в животе, головокружение</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Амоксициллин</column>
+            <column name="measuring">250 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Высыпания на коже, тошнота</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Ципрофлоксацин</column>
+            <column name="measuring">500 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Головная боль, диарея</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Лоратадин</column>
+            <column name="measuring">10 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Сухость во рту, головная боль</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Диклофенак</column>
+            <column name="measuring">25 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Боль в животе, головокружение</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Метформин</column>
+            <column name="measuring">500 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Тошнота, диарея</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Флуоксетин</column>
+            <column name="measuring">20 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Тревожность, бессонница</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Клавулановая кислота</column>
+            <column name="measuring">125 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Аллергические реакции, головная боль</column>
+        </insert>
+        <insert tableName="medicine">
+            <column name="name">Сибутрамин</column>
+            <column name="measuring">10 мг</column>
+            <column name="method">Перорально</column>
+            <column name="side_effects">Тахикардия, головная боль</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

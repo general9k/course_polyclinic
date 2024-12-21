@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.rodionov.polyclinic.model.Medicine;
 import ru.rodionov.polyclinic.service.MedicineService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,15 @@ public class MedicineFacade {
 
     public List<Medicine> getMedicines(String name) {
         return medicineService.getMedicines(name);
+    }
+
+    public List<Medicine> getMedicines(List<String> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return ids.stream()
+                .map(s -> getMedicine(UUID.fromString(s)))
+                .toList();
     }
 
     public Medicine getMedicine(UUID id) {

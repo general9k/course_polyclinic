@@ -14,9 +14,12 @@ import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.repository.AuthUserRepository;
 import ru.rodionov.polyclinic.repository.UserRepository;
 import ru.rodionov.polyclinic.service.AuthService;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 import ru.rodionov.polyclinic.util.file.FileStorageService;
 
 import java.io.IOException;
+import java.util.UUID;
 
 
 @Service
@@ -37,11 +40,13 @@ public class AuthUserServiceImpl implements AuthService {
     @Transactional
     public void save(CreateClientRequest createClientRequest, MultipartFile photo) {
 
-        try {
-            String photoUrl = fileStorageService.saveFile(photo);
-            createClientRequest.setPhotoUrl(photoUrl);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (photo != null && !photo.isEmpty()) {
+            try {
+                String photoUrl = fileStorageService.saveFile(photo);
+                createClientRequest.setPhotoUrl(photoUrl);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         AuthUser authUser = authUserMapper.mapToAuthUser(createClientRequest);
@@ -57,5 +62,13 @@ public class AuthUserServiceImpl implements AuthService {
     @Transactional
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public User getByAuthId(UUID id) {
+        return userRepository.findByAuthUser_Id(id)
+                .orElseThrow(() -> new ServerLogicException("Пользователь с id %s не найден".formatted(id),
+                        ServerLogicExceptionType.NOT_FOUND));
+
     }
 }

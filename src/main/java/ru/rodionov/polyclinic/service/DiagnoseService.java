@@ -12,4 +12,6 @@ public interface DiagnoseService {
     void save(String name);
 
     void delete(UUID id);
+
+    Diagnose getDiagnose(String id);
 }

@@ -18,6 +18,7 @@
         <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
         <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
         <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/receptions">Приемы</a></li>
         <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -32,7 +33,9 @@
         <p th:text="'Телефон: ' + ${doctor.phoneNumber}">Телефон</p>
         <p th:text="'Email: ' + ${doctor.email}">Email</p>
         <p th:text="'Медицинский номер: ' + ${doctor.medicalNumber}">Медицинский номер</p>
-        <button class="appointment-btn" onclick="location.href='/appointment/${doctor.id}'">Записаться на прием</button>
+        <form th:if="${isAdmin || isUser}" th:action="@{/api/v1/doctors/{id}/reception(id=${doctor.id})}" method="GET">
+            <button type="submit" class="create-diagnosis-btn">Создать прием</button>
+        </form>
     </div>
 </section>
 <footer>

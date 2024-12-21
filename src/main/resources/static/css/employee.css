@@ -129,3 +129,22 @@ footer p {
 footer .contacts {
     margin-top: 10px;
 }
+
+.create-diagnosis-btn {
+    background-color: #1ABC9C; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    padding: 0.8rem 1.5rem; /* Отступы */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругленные углы */
+    font-size: 1rem; /* Размер шрифта */
+    cursor: pointer; /* Указатель при наведении */
+    margin-top: 1rem; /* Отступ сверху */
+    display: inline-block; /* Отображение кнопки */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+.create-diagnosis-btn:hover {
+    background-color: #16A085; /* Цвет при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Усиление тени при наведении */
+}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.rodionov.polyclinic.model.Symptom;
 import ru.rodionov.polyclinic.service.SymptomService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,13 @@ public class SymptomFacade {
 
     public List<Symptom> getSymptoms() {
         return symptomService.getSymptoms();
+    }
+
+    public List<Symptom> getSymptoms(List<String> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return symptomService.getSymptoms(ids);
     }
 
     public void save(String name) {

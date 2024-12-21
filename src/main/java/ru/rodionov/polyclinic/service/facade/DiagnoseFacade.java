@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.rodionov.polyclinic.model.Diagnose;
 import ru.rodionov.polyclinic.service.DiagnoseService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,5 +28,14 @@ public class DiagnoseFacade {
 
     public void deleteDiagnose(UUID id) {
         diagnoseService.delete(id);
+    }
+
+    public List<Diagnose> getDiagnoses(List<String> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return ids.stream()
+                .map(diagnoseService::getDiagnose)
+                .toList();
     }
 }

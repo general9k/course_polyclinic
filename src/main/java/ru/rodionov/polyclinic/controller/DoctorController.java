@@ -36,6 +36,7 @@ public class DoctorController implements DoctorControllerApi {
     public String getDoctor(Model model, UUID id) {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isUser", userFacade.isUser());
         model.addAttribute("isModerator", userFacade.isModerator());
 
         model.addAttribute("doctor", doctorFacade.getDoctor(id));

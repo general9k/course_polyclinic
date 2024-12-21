@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание Приёма</title>
+    <link rel="stylesheet" href="/css/reception.css">
+</head>
+<body>
+<header>
+    <h1>Создание Приёма</h1>
+    <p>Заполните данные для нового приёма.</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/receptions">Приемы</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<section id="create-reception">
+    <div class="form-container">
+        <h2>Новый Приём</h2>
+        <form th:action="@{/api/v1/doctors/{id}/reception(id=${doctorId})}" method="POST">
+        <div class="form-group">
+                <label for="dateOfAppointment">Дата приёма:</label>
+                <input min="2023-01-01T00:00" max="2030-12-31T23:59" type="datetime-local" id="dateOfAppointment" name="dateOfAppointment" required>
+            </div>
+
+            <div class="form-group">
+                <label for="symptoms">Симптомы:</label>
+                <select id="symptoms" name="symptoms" multiple>
+                    <th:block th:each="symptom : ${symptoms}">
+                        <option th:value="${symptom.id}" th:text="${symptom.name}"></option>
+                    </th:block>
+                </select>
+                <small>Удерживайте Ctrl (Windows) или Command (Mac), чтобы выбрать несколько.</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Создать приём</button>
+            </div>
+        </form>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
+</body>
+</html>

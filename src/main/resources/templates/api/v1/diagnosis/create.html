@@ -18,6 +18,7 @@
         <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
         <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
         <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/receptions">Приемы</a></li>
         <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -32,7 +33,9 @@
 
             <button type="submit" class="create-diagnosis-btn">Создать диагноз</button>
         </form>
-        <button class="create-diagnosis-btn" onclick="location.href='/api/v1/diagnosis/create'">Назад к списку диагнозов</button>
+        <button class="create-diagnosis-btn" onclick="location.href='/api/v1/diagnosis/create'">Назад к списку
+            диагнозов
+        </button>
     </div>
 </section>
 <footer>

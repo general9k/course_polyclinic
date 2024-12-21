@@ -33,6 +33,12 @@ public class UserFacade {
         authService.save(user);
     }
 
+    @Transactional(readOnly = true)
+    public User getByAuthId() {
+        return authService.getByAuthId(getCurrentUserId());
+    }
+
+
     public UUID getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AuthUserDetails userDetails = (AuthUserDetails) authentication.getPrincipal();

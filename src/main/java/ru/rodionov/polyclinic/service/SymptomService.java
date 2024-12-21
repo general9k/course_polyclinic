@@ -9,6 +9,10 @@ public interface SymptomService {
 
     List<Symptom> getSymptoms();
 
+    Symptom getSymptom(String id);
+
+    List<Symptom> getSymptoms(List<String> ids);
+
     void save(String name);
 
     void delete(UUID id);

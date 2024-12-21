@@ -6,5 +6,5 @@
 
     <include file="db/changelog/changeset/init/init-uuid.xml"/>
     <include file="db/changelog/changeset/init/init-tables.xml"/>
-
+    <include file="db/changelog/changeset/init/insert-entity.xml"/>
 </databaseChangeLog>

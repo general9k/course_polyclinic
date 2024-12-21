@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.rodionov.polyclinic.model.Symptom;
 import ru.rodionov.polyclinic.repository.SymptomRepository;
 import ru.rodionov.polyclinic.service.SymptomService;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +24,20 @@ public class SymptomServiceImpl implements SymptomService {
     @Transactional(readOnly = true)
     public List<Symptom> getSymptoms() {
         return symptomRepository.findAll();
+    }
+
+    @Override
+    public Symptom getSymptom(String id) {
+        return symptomRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ServerLogicException("Симптом с id %s не найден".formatted(id),
+                        ServerLogicExceptionType.NOT_FOUND));
+    }
+
+    @Override
+    public List<Symptom> getSymptoms(List<String> ids) {
+        return ids.stream()
+                .map(this::getSymptom)
+                .toList();
     }
 
     @Override

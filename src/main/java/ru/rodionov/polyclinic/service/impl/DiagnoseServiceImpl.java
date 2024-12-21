@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.rodionov.polyclinic.model.Diagnose;
 import ru.rodionov.polyclinic.repository.DiagnoseRepository;
 import ru.rodionov.polyclinic.service.DiagnoseService;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,5 +38,11 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     @Transactional
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Diagnose getDiagnose(String id) {
+        return repository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ServerLogicException("Диагноз с id %s не найден".formatted(id), ServerLogicExceptionType.NOT_FOUND));
     }
 }

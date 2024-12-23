@@ -53,4 +53,9 @@ public class DoctorServiceImpl implements DoctorService {
                 .distinct()
                 .toList();
     }
+
+    @Override
+    public List<User> getDoctors() {
+        return repository.findUserByAuthUser_Role(RoleEnum.MODERATOR.getCode().substring(5));
+    }
 }

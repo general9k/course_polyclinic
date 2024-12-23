@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.rodionov.polyclinic.model.request.CreateReceptionRequest;
+import ru.rodionov.polyclinic.model.request.UpdateReceptionRequest;
 
 import java.util.UUID;
 
@@ -34,4 +35,16 @@ public interface ReceptionControllerApi {
             method = RequestMethod.POST
     )
     String deleteReceptions(@PathVariable UUID id);
+
+    @RequestMapping(
+            value = "/receptions/{id}/edit",
+            method = RequestMethod.GET
+    )
+    String updateReception(Model model, @PathVariable UUID id);
+
+    @RequestMapping(
+            value = "/receptions/{id}/edit",
+            method = RequestMethod.POST
+    )
+    String updateReception(@PathVariable UUID id, UpdateReceptionRequest request);
 }

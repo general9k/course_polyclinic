@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.rodionov.polyclinic.model.Reception;
 import ru.rodionov.polyclinic.repository.ReceptionRepository;
 import ru.rodionov.polyclinic.service.ReceptionService;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 
 import java.util.List;
 import java.util.UUID;
@@ -42,5 +44,11 @@ public class ReceptionServiceImpl implements ReceptionService {
     @Override
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Reception getReception(UUID id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ServerLogicException("Прием с id %s не найден".formatted(id), ServerLogicExceptionType.NOT_FOUND));
     }
 }

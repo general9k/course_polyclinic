@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+<header>
+    <h1>Поликлиника здорового лечения</h1>
+    <p>Ваш личный кабинет</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/receptions">Приемы</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/profile" class="active">Личный кабинет</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <header class="profile-header">
+        <h1>Личный кабинет</h1>
+    </header>
+
+    <section id="user-info" class="info-section">
+        <h2>Основная информация</h2>
+        <div class="info-group">
+            <label>ФИО:</label>
+            <span th:text="${user.lastName} + ' ' + ${user.firstName} + ' ' + (user.patronymic != null ? user.patronymic : '')">Иванов Иван Иванович</span>
+        </div>
+        <div class="info-group">
+            <label>Email:</label>
+            <span th:text="${user.email}">example@example.com</span>
+        </div>
+    </section>
+
+    <section id="passport-info" class="info-section">
+        <h2>Паспортные данные</h2>
+        <div th:if="${user.passport != null}">
+            <div class="info-group">
+                <label>Серия и номер:</label>
+                <span th:if="${user.passport.series != null && user.passport.number != null}"
+                      th:text="${user.passport.series} + ' ' + ${user.passport.number}">1234 567890</span>
+                <span th:if="${user.passport.series == null || user.passport.number == null}">Данные отсутствуют</span>
+            </div>
+            <div class="info-group">
+                <label>Код подразделения:</label>
+                <span th:if="${user.passport.code != null}" th:text="${user.passport.code}">123-456</span>
+                <span th:if="${user.passport.code == null}">Данные отсутствуют</span>
+            </div>
+            <div class="info-group">
+                <label>Дата выдачи:</label>
+                <span th:if="${user.passport.issueDate != null}" th:text="${user.passport.issueDate}">01.01.2015</span>
+                <span th:if="${user.passport.issueDate == null}">Данные отсутствуют</span>
+            </div>
+        </div>
+        <div th:if="${user.passport == null}">
+            <p>Данные отсутствуют</p>
+        </div>
+    </section>
+
+
+    <section id="address-info" class="info-section">
+        <h2>Адрес</h2>
+        <div th:if="${user.address != null}">
+            <div class="info-group">
+                <label>Город:</label>
+                <span th:if="${user.address.city != null}" th:text="${user.address.city}">Москва</span>
+                <span th:if="${user.address.city == null}">Данные отсутствуют</span>
+            </div>
+            <div class="info-group">
+                <label>Улица:</label>
+                <span th:if="${user.address.street != null}" th:text="${user.address.street}">Ленина</span>
+                <span th:if="${user.address.street == null}">Данные отсутствуют</span>
+            </div>
+            <div class="info-group">
+                <label>Дом:</label>
+                <span th:if="${user.address.house != null}" th:text="${user.address.house}">10</span>
+                <span th:if="${user.address.house == null}">Данные отсутствуют</span>
+            </div>
+            <div class="info-group">
+                <label>Квартира:</label>
+                <span th:if="${user.address.apartment != null}" th:text="${user.address.apartment}">15</span>
+                <span th:if="${user.address.apartment == null}">Данные отсутствуют</span>
+            </div>
+        </div>
+        <div th:if="${user.address == null}">
+            <p>Данные отсутствуют</p>
+        </div>
+
+        <a href="/api/v1/profile/edit" class="edit-btn">Редактировать профиль</a>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
+</body>
+</html>

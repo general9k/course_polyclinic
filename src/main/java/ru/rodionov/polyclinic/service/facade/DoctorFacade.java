@@ -27,4 +27,8 @@ public class DoctorFacade {
     public List<String> getPositions() {
         return doctorService.getPositions();
     }
+
+    public List<User> getDoctors() {
+        return doctorService.getDoctors();
+    }
 }

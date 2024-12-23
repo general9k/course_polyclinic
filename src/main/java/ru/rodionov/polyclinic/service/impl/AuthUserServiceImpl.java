@@ -10,6 +10,7 @@ import ru.rodionov.polyclinic.mapper.AuthUserMapper;
 import ru.rodionov.polyclinic.mapper.UserMapper;
 import ru.rodionov.polyclinic.model.AuthUser;
 import ru.rodionov.polyclinic.model.User;
+import ru.rodionov.polyclinic.model.enums.RoleEnum;
 import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.repository.AuthUserRepository;
 import ru.rodionov.polyclinic.repository.UserRepository;
@@ -19,6 +20,7 @@ import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 import ru.rodionov.polyclinic.util.file.FileStorageService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -70,5 +72,17 @@ public class AuthUserServiceImpl implements AuthService {
                 .orElseThrow(() -> new ServerLogicException("Пользователь с id %s не найден".formatted(id),
                         ServerLogicExceptionType.NOT_FOUND));
 
+    }
+
+    @Override
+    public User getById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ServerLogicException("Пользователь с id %s не найден".formatted(id),
+                        ServerLogicExceptionType.NOT_FOUND));
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return userRepository.findUserByAuthUser_Role(RoleEnum.USER.getCode().substring(5));
     }
 }

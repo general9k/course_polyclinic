@@ -12,4 +12,6 @@ public interface DoctorService {
     User getDoctor(UUID id);
 
     List<String> getPositions();
+
+    List<User> getDoctors();
 }

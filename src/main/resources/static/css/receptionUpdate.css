@@ -1,0 +1,141 @@
+/* Общие стили */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2C3E50;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+}
+
+/* Навигация */
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #34495E;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+    background-color: #1ABC9C;
+    border-radius: 4px;
+}
+
+/* Секция редактирования */
+#reception-edit {
+    padding: 2rem;
+    background-color: #fff;
+    max-width: 600px;
+    margin: 3rem auto; /* Увеличен верхний и нижний отступ */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2C3E50;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Блок кнопок */
+.form-actions {
+    display: flex;
+    justify-content: center; /* Центрируем кнопки */
+    gap: 1rem; /* Отступ между кнопками */
+    margin-top: 1rem; /* Добавлен отступ сверху */
+}
+
+.btn-save {
+    background-color: #1ABC9C;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1; /* Кнопки занимают равное пространство */
+    max-width: 150px; /* Ограничиваем максимальную ширину кнопки */
+}
+
+.btn-save:hover {
+    background-color: #16A085;
+}
+
+.btn-cancel {
+    color: #fff;
+    background-color: #E74C3C;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1; /* Кнопки занимают равное пространство */
+    max-width: 150px; /* Ограничиваем максимальную ширину кнопки */
+}
+
+.btn-cancel:hover {
+    background-color: #C0392B;
+}
+
+/* Футер */
+footer {
+    background-color: #2C3E50;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem; /* Добавляем отступ перед футером */
+}
+
+footer .contacts {
+    margin-top: 10px;
+}

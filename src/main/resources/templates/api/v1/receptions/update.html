@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование Приёма</title>
+    <link rel="stylesheet" href="/css/receptionUpdate.css">
+</head>
+<body>
+<header>
+    <h1>Редактирование Приёма</h1>
+    <p>Измените данные о приёме и сохраните изменения.</p>
+</header>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная страница</a></li>
+        <li><a href="/api/v1/doctors">Врачи</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/symptoms">Симптомы</a></li>
+        <li th:if="${isAdmin || isModerator}"><a href="/api/v1/diagnosis">Диагнозы</a></li>
+        <li><a href="/api/v1/medicines">Лекарства</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/receptions">Приемы</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/profile" class="active">Личный кабинет</a></li>
+        <li th:if="${isAdmin}"><a href="/registration">Создать сотрудника</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<section id="reception-edit">
+    <div class="form-wrapper">
+        <h2>Информация о приёме</h2>
+        <form th:action="@{/api/v1/receptions/{id}/edit(id=${reception.id})}" method="POST">
+            <label for="dateOfAppointment">Дата и время приёма:</label>
+            <input id="dateOfAppointment" min="2023-01-01T00:00" max="2030-12-31T23:59" type="datetime-local"
+                   name="dateOfAppointment" th:value="${formattedDateOfAppointment}" required>
+
+            <label for="worker">Врач:</label>
+            <select id="worker" name="workerId" required>
+                <option th:each="worker : ${workers}" th:value="${worker.id}"
+                        th:text="|${worker.lastName}, ${worker.firstName}, ${worker.patronymic}|"
+                        th:selected="${worker.id == reception.worker.id}"></option>
+            </select>
+
+            <label for="patient">Пациент:</label>
+            <select id="patient" name="patientId" required>
+                <option th:each="patient : ${patients}" th:value="${patient.id}"
+                        th:text="|${patient.lastName}, ${patient.firstName}, ${patient.patronymic}|"
+                        th:selected="${patient.id == reception.patient.id}"></option>
+            </select>
+
+            <label for="symptoms">Симптомы:</label>
+            <select id="symptoms" name="symptoms" multiple>
+                <option th:each="symptom : ${symptoms}" th:value="${symptom.id}" th:text="${symptom.name}"
+                        th:selected="${reception.symptoms.contains(symptom)}"></option>
+            </select>
+
+            <label for="diagnoses">Диагнозы:</label>
+            <select id="diagnoses" name="diagnoses" multiple>
+                <option th:each="diagnose : ${diagnoses}" th:value="${diagnose.id}" th:text="${diagnose.name}"
+                        th:selected="${reception.diagnoses.contains(diagnose)}"></option>
+            </select>
+
+            <label for="medicines">Назначенные лекарства:</label>
+            <select id="medicines" name="medicines" multiple>
+                <option th:each="medicine : ${medicines}" th:value="${medicine.id}" th:text="${medicine.name}"
+                        th:selected="${reception.medicines.contains(medicine)}"></option>
+            </select>
+
+            <label for="prescription">Рекомендации:</label>
+            <textarea id="prescription" name="prescription" rows="4" th:text="${reception.prescription}"></textarea>
+
+            <label for="wasCarriedOut">Приём проведён:</label>
+            <input type="checkbox" id="wasCarriedOut" name="wasCarriedOut" th:checked="${reception.wasCarriedOut}">
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Сохранить</button>
+                <a href="/api/v1/receptions" class="btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2024 Поликлиника здорового лечения. Все права защищены.</p>
+    <div class="contacts">
+        <p>Адрес: ул. Гагарина, 12</p>
+        <p>Телефон: +7 (906) 528-74-58</p>
+    </div>
+</footer>
+</body>
+</html>

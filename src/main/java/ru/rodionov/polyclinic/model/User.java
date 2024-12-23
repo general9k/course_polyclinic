@@ -1,5 +1,6 @@
 package ru.rodionov.polyclinic.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -59,4 +60,12 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auth_user", nullable = false)
     private AuthUser authUser;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport", referencedColumnName = "id")
+    private Passport passport;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address", referencedColumnName = "id")
+    private Address address;
 }

@@ -37,4 +37,8 @@ public class ReceptionFacade {
         receptionService.delete(id);
     }
 
+    public Reception getById(UUID id) {
+        return receptionService.getReception(id);
+    }
+
 }

@@ -16,4 +16,6 @@ public interface ReceptionService {
     List<Reception> getReceptions();
 
     void delete(UUID id);
+
+    Reception getReception(UUID id);
 }

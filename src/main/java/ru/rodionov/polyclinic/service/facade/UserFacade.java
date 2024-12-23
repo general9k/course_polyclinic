@@ -14,6 +14,7 @@ import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.service.AuthService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -38,6 +39,15 @@ public class UserFacade {
         return authService.getByAuthId(getCurrentUserId());
     }
 
+    @Transactional(readOnly = true)
+    public User getById(UUID id) {
+        return authService.getById(id);
+    }
+
+
+    public List<User> getUsers() {
+        return authService.getUsers();
+    }
 
     public UUID getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

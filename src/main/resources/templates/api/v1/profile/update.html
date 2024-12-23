@@ -69,7 +69,7 @@
         <h1>Изменить профиль</h1>
     </header>
 
-    <form action="/api/v1/profile/update" method="post">
+    <form action="/api/v1/profile/edit" method="post">
         <section id="user-info" class="info-section">
             <h2>Основная информация</h2>
             <div class="info-group">
@@ -86,24 +86,24 @@
             </div>
             <div class="info-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" th:value="${user.email}" required>
+                <input type="email" id="email" name="email" th:value="${user.email}">
             </div>
         </section>
 
         <section id="passport-info" class="info-section">
             <h2>Паспортные данные</h2>
             <div class="info-group">
-                <label for="passportSeries">Серия и номер:</label>
-                <input type="text" id="passportSeries" name="passportSeries" th:value="${user.passport != null ? user.passport.series : ''}" placeholder="XXXX">
-                <input type="text" id="passportNumber" name="passportNumber" th:value="${user.passport != null ? user.passport.number : ''}" placeholder="XXXXXX">
+                <label for="series">Серия и номер:</label>
+                <input type="text" id="series" name="series" th:value="${user.passport != null ? user.passport.series : ''}" placeholder="XXXX" maxlength="4">
+                <input type="text" id="number" name="number" th:value="${user.passport != null ? user.passport.number : ''}" placeholder="XXXXXX" maxlength="6">
             </div>
             <div class="info-group">
-                <label for="passportCode">Код подразделения:</label>
-                <input type="text" id="passportCode" name="passportCode" th:value="${user.passport != null ? user.passport.code : ''}" placeholder="XXX-XXX">
+                <label for="code">Код подразделения:</label>
+                <input type="text" id="code" name="code" th:value="${user.passport != null ? user.passport.code : ''}" placeholder="XXX-XXX" maxlength="7">
             </div>
             <div class="info-group">
-                <label for="passportIssueDate">Дата выдачи:</label>
-                <input type="date" id="passportIssueDate" name="passportIssueDate" th:value="${user.passport != null ? user.passport.issueDate : ''}">
+                <label for="issueDate">Дата выдачи:</label>
+                <input type="date" id="issueDate" name="issueDate" th:value="${formattedIssueDate != null ? formattedIssueDate : ''}">
             </div>
         </section>
 
@@ -127,8 +127,9 @@
             </div>
         </section>
 
-        <div class="info-group">
+        <div class="form-actions">
             <button type="submit" class="save-btn">Сохранить изменения</button>
+            <a href="/api/v1/profile" class="cancel-btn">Отмена</a>
         </div>
     </form>
 </div>

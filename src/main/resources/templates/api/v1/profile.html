@@ -35,7 +35,7 @@
         <h2>Основная информация</h2>
         <div class="info-group">
             <label>ФИО:</label>
-            <span th:text="${user.lastName} + ' ' + ${user.firstName} + ' ' + (user.patronymic != null ? user.patronymic : '')">Иванов Иван Иванович</span>
+            <span th:text="${user.lastName} + ' ' + ${user.firstName} + ' ' + (${user.patronymic} != null ? ${user.patronymic} : '')">Иванов Иван Иванович</span>
         </div>
         <div class="info-group">
             <label>Email:</label>
@@ -59,8 +59,8 @@
             </div>
             <div class="info-group">
                 <label>Дата выдачи:</label>
-                <span th:if="${user.passport.issueDate != null}" th:text="${user.passport.issueDate}">01.01.2015</span>
-                <span th:if="${user.passport.issueDate == null}">Данные отсутствуют</span>
+                <span th:if="${formattedIssueDate != null}" th:text="${formattedIssueDate}">01.01.2015</span>
+                <span th:if="${formattedIssueDate == null}">Данные отсутствуют</span>
             </div>
         </div>
         <div th:if="${user.passport == null}">

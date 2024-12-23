@@ -166,7 +166,7 @@ public class ReceptionController implements ReceptionControllerApi {
 
         reception.setDateOfAppointment(dateOfAppointment);
         reception.setWasCarriedOut(request.getWasCarriedOut());
-        reception.setPrescription(reception.getPrescription());
+        reception.setPrescription(request.getPrescription());
         reception.setWorker(doctor);
         reception.setPatient(user);
         reception.setSymptoms(new HashSet<>(symptoms));

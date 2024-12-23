@@ -40,3 +40,5 @@ build/
 ### Mac OS ###
 .DS_Store
 HELP.md
+
+/src/main/resources/static/images

@@ -234,15 +234,13 @@ public class ReceptionController implements ReceptionControllerApi {
 
                 String symptoms = reception.getSymptoms().stream()
                         .map(Symptom::getName)
-                        .reduce((s1, s2) -> s1 + ", " + s2)
-                        .orElse("");
+                        .collect(Collectors.joining("\n"));
 
                 table.addCell(new Phrase(symptoms, getRussianFont(7, Font.NORMAL)));
 
                 String diagnoses = reception.getDiagnoses().stream()
                         .map(Diagnose::getName)
-                        .reduce((d1, d2) -> d1 + ", " + d2)
-                        .orElse("");
+                        .collect(Collectors.joining("\n"));
 
                 table.addCell(new Phrase(diagnoses, getRussianFont(7, Font.NORMAL)));
 

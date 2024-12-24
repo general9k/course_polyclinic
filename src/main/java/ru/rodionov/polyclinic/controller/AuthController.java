@@ -3,6 +3,7 @@ package ru.rodionov.polyclinic.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.rodionov.polyclinic.controller.api.AuthControllerApi;
 import ru.rodionov.polyclinic.model.request.CreateClientRequest;
 import ru.rodionov.polyclinic.service.facade.UserFacade;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 
 import java.io.IOException;
 
@@ -47,9 +50,13 @@ public class AuthController implements AuthControllerApi {
     }
 
     @Override
-    @Transactional
-    public String registration(CreateClientRequest createClientRequest,  MultipartFile photo) throws IOException {
-        userFacade.saveUser(createClientRequest, photo);
+    public String registration(CreateClientRequest createClientRequest, MultipartFile photo) throws IOException {
+        try {
+            userFacade.saveUser(createClientRequest, photo);
+        } catch (DataIntegrityViolationException e) {
+            throw new ServerLogicException("Невозможно зарегистрировать пользователя с таким username. Попробуйте другой",
+                    ServerLogicExceptionType.AUTHENTICATION_ERROR);
+        }
         return "redirect:/login";
     }
 

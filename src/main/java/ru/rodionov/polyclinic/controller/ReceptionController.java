@@ -1,9 +1,20 @@
 package ru.rodionov.polyclinic.controller;
 
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.rodionov.polyclinic.controller.api.ReceptionControllerApi;
@@ -20,6 +31,8 @@ import ru.rodionov.polyclinic.service.facade.MedicineFacade;
 import ru.rodionov.polyclinic.service.facade.ReceptionFacade;
 import ru.rodionov.polyclinic.service.facade.SymptomFacade;
 import ru.rodionov.polyclinic.service.facade.UserFacade;
+import ru.rodionov.polyclinic.util.exception.ServerLogicException;
+import ru.rodionov.polyclinic.util.exception.ServerLogicExceptionType;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -31,6 +44,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -38,6 +52,7 @@ import java.util.UUID;
 public class ReceptionController implements ReceptionControllerApi {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+    private final DateTimeFormatter pdfFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final UserFacade userFacade;
 
@@ -176,5 +191,90 @@ public class ReceptionController implements ReceptionControllerApi {
         receptionFacade.save(reception);
 
         return "redirect:/api/v1/receptions";
+    }
+
+    @Override
+    public void downloadPDFReceptions(HttpServletResponse response) {
+        try {
+            response.setContentType("application/pdf");
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=recipients.pdf");
+
+            List<Reception> receptions = receptionFacade.getReceptions();
+
+            boolean user = userFacade.isUser();
+            boolean moderator = userFacade.isModerator();
+
+            if (moderator) {
+                receptions = receptionFacade.getReceptionsForDoctor(userFacade.getByAuthId().getId());
+            } else if (user) {
+                receptions = receptionFacade.getReceptionsForUser(userFacade.getByAuthId().getId());
+            }
+
+            receptions = receptions.stream()
+                    .sorted(Comparator.comparing(Reception::getDateOfAppointment))
+                    .toList().reversed();
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, response.getOutputStream());
+
+            document.open();
+            document.add(new Paragraph("Ваши приемы", getRussianFont(12, Font.BOLD)));
+
+            PdfPTable table = new PdfPTable(7);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+
+            addTableHeader(table, "Дата приема", "Пациент", "Доктор", "Специализация", "Симптомы", "Диагнозы", "Лекарства");
+
+            for (Reception reception : receptions) {
+                table.addCell(new Phrase(reception.getDateOfAppointment().format(pdfFormatter), getRussianFont(7, Font.NORMAL)));
+                table.addCell(new Phrase(reception.getPatient().getLastName() + ' ' + reception.getPatient().getFirstName(), getRussianFont(7, Font.NORMAL)));
+                table.addCell(new Phrase(reception.getWorker().getLastName() + ' ' + reception.getWorker().getFirstName(), getRussianFont(7, Font.NORMAL)));
+                table.addCell(new Phrase(reception.getWorker().getPosition(), getRussianFont(7, Font.NORMAL)));
+
+                String symptoms = reception.getSymptoms().stream()
+                        .map(Symptom::getName)
+                        .reduce((s1, s2) -> s1 + ", " + s2)
+                        .orElse("");
+
+                table.addCell(new Phrase(symptoms, getRussianFont(7, Font.NORMAL)));
+
+                String diagnoses = reception.getDiagnoses().stream()
+                        .map(Diagnose::getName)
+                        .reduce((d1, d2) -> d1 + ", " + d2)
+                        .orElse("");
+
+                table.addCell(new Phrase(diagnoses, getRussianFont(7, Font.NORMAL)));
+
+                String medicines = reception.getMedicines().stream()
+                        .map(m -> m.getName() + ", " + m.getMeasuring() + ", " + m.getMethod() + ", " + m.getSideEffects())
+                        .collect(Collectors.joining("\n"));
+
+                table.addCell(new Phrase(medicines, getRussianFont(7, Font.NORMAL)));
+            }
+            document.add(table);
+            document.close();
+        } catch (Exception e) {
+            throw new ServerLogicException("Ошибка скачивания PDF-файла", ServerLogicExceptionType.SERVICE_ERROR);
+        }
+    }
+
+    private void addTableHeader(PdfPTable table, String... headers) {
+        for (String header : headers) {
+            PdfPCell cell = new PdfPCell();
+            cell.setPhrase(new Phrase(header, getRussianFont(12, Font.BOLD)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+        }
+    }
+
+    private static Font getRussianFont(int size, int style) {
+        try {
+            String fontPath = "static/fonts/arial.ttf"; // Укажите путь к шрифту
+            BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            return new Font(baseFont, size, style);
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка загрузки шрифта", e);
+        }
     }
 }

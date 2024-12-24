@@ -74,14 +74,25 @@
                     <td th:text="${reception.wasCarriedOut ? 'Проведён' : 'Не проведён'}"></td>
                     <td th:if="${isAdmin || isModerator}">
                         <a th:href="@{/api/v1/receptions/{id}/edit(id=${reception.id})}" class="btn btn-edit">Редактировать</a>
-                        <form th:action="@{/api/v1/receptions/{id}/delete(id=${reception.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-delete" onclick="return confirm('Вы уверены, что хотите удалить приём?');">Удалить</button>
+                        <form th:action="@{/api/v1/receptions/{id}/delete(id=${reception.id})}" method="post"
+                              style="display:inline;">
+                            <button type="submit" class="btn btn-delete"
+                                    onclick="return confirm('Вы уверены, что хотите удалить приём?');">Удалить
+                            </button>
                         </form>
                     </td>
                 </tr>
             </th:block>
             </tbody>
         </table>
+
+        <div class="actions">
+            <button
+                    onclick="window.location.href='/api/v1/receptions/pdf'"
+                    class="download-pdf-btn">
+                Скачать PDF
+            </button>
+        </div>
     </section>
 </div>
 <footer>

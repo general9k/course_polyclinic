@@ -28,4 +28,9 @@ public class Symptom {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Override
+    public String toString() {
+        return "name='" + this.name + '\'';
+    }
 }

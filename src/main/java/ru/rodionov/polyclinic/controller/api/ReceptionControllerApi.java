@@ -1,5 +1,6 @@
 package ru.rodionov.polyclinic.controller.api;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,4 +48,10 @@ public interface ReceptionControllerApi {
             method = RequestMethod.POST
     )
     String updateReception(@PathVariable UUID id, UpdateReceptionRequest request);
+
+    @RequestMapping(
+            value = "/receptions/pdf",
+            method = RequestMethod.GET
+    )
+    void downloadPDFReceptions(HttpServletResponse response);
 }
